@@ -37,7 +37,9 @@ class GetStartedPage extends StatelessWidget {
               CustomButton(
                 label: 'Masuk',
                 backgroundColor: primaryColor,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed('/home');
+                },
               ),
               const Gap.v(h: 15),
               CustomButton(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/style.dart';
 import 'package:tugas_flutter/presentation/pages/get_started_page.dart';
+import 'package:tugas_flutter/presentation/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const GetStartedPage(),
+        '/home': (context) => HomePage(),
       },
     );
   }
