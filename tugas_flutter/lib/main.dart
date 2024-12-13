@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/style.dart';
 import 'package:tugas_flutter/presentation/pages/get_started_page.dart';
 import 'package:tugas_flutter/presentation/pages/home_page.dart';
+import 'package:tugas_flutter/presentation/pages/profile_page.dart';
+import 'package:tugas_flutter/presentation/pages/search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +20,51 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const GetStartedPage(),
-        '/home': (context) => HomePage(),
+        '/home': (context) => const BottomBar(),
       },
+    );
+  }
+}
+
+class BottomBar extends StatefulWidget {
+  const BottomBar({super.key});
+
+  @override
+  BottomBarStates createState() => BottomBarStates();
+}
+
+class BottomBarStates extends State<BottomBar> {
+  int selectedPage = 0;
+
+  final List<Widget> _pageOptions = [
+    HomePage(),
+    const SearchPage(),
+    const ProfilePage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: _pageOptions[selectedPage],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Dashboard'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box_rounded), label: 'Profile'),
+        ],
+        selectedItemColor: const Color(0xff253B80),
+        unselectedItemColor: const Color(0xff253B80).withOpacity(0.3),
+        currentIndex: selectedPage,
+        backgroundColor: Colors.white,
+        onTap: (index) {
+          setState(() {
+            selectedPage = index;
+          });
+        },
+      ),
     );
   }
 }
