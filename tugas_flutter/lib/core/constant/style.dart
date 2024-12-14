@@ -22,12 +22,12 @@ class StyleConst {
         color: const Color(blackColor)),
     headlineLarge: GoogleFonts.poppins(
         fontSize: 34,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w700,
         letterSpacing: 0.25,
         color: const Color(blackColor)),
     headlineMedium: GoogleFonts.poppins(
-        fontSize: 21,
-        fontWeight: FontWeight.w700,
+        fontSize: 26,
+        fontWeight: FontWeight.w400,
         color: const Color(blackColor)),
     headlineSmall: GoogleFonts.roboto(
         fontSize: 15,
@@ -50,7 +50,12 @@ class StyleConst {
         letterSpacing: 0.5,
         color: const Color(blackColor)),
     bodyMedium: GoogleFonts.poppins(
-        fontSize: 16,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.25,
+        color: const Color(blackColor)),
+    bodySmall: GoogleFonts.poppins(
+        fontSize: 12,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.25,
         color: const Color(blackColor)),

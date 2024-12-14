@@ -5,6 +5,8 @@ import 'package:tugas_flutter/presentation/pages/home_page.dart';
 import 'package:tugas_flutter/presentation/pages/profile_page.dart';
 import 'package:tugas_flutter/presentation/pages/search_page.dart';
 
+import 'core/constant/string.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -39,12 +41,13 @@ class BottomBarStates extends State<BottomBar> {
   final List<Widget> _pageOptions = [
     HomePage(),
     const SearchPage(),
-    const ProfilePage(),
+    ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(context),
       body: SafeArea(
         child: _pageOptions[selectedPage],
       ),
@@ -65,6 +68,34 @@ class BottomBarStates extends State<BottomBar> {
           });
         },
       ),
+    );
+  }
+
+  /// build app bar
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      leadingWidth: 72,
+      forceMaterialTransparency: true,
+      centerTitle: true,
+      title: selectedPage == 0
+          ? Text(
+              'NewsApp',
+              style: Theme.of(context).textTheme.headlineMedium,
+            )
+          : Container(),
+      leading: Container(
+          padding: const EdgeInsets.only(left: 32),
+          child: Image.asset(
+            menuIconPath,
+            width: 40,
+            height: 40,
+          )),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 32),
+          child: Image.asset(searchIconPath),
+        ),
+      ],
     );
   }
 }

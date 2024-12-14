@@ -70,10 +70,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(context),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
+          padding: const EdgeInsets.all(32),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
@@ -87,25 +86,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  /// build app bar
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      forceMaterialTransparency: true,
-      centerTitle: true,
-      title: Text(
-        'NewsApp',
-        style: Theme.of(context).textTheme.headlineMedium,
-      ),
-      leading: Container(
-          margin: const EdgeInsets.only(left: 16.0),
-          child: Image.asset(
-            menuIconPath,
-            width: 40,
-            height: 40,
-          )),
     );
   }
 

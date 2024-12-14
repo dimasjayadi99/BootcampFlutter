@@ -3,6 +3,7 @@ const String menuIconPath = 'assets/icons/ic_menu.png';
 const String messageIconPath = 'assets/icons/ic_message.png';
 const String favoriteIconPath = 'assets/icons/ic_favorite.png';
 const String shareIconPath = 'assets/icons/ic_share.png';
+const String searchIconPath = 'assets/icons/ic_search.png';
 const String defaultAvatarPath = 'assets/images/default_avatar.jpg';
 const String newsImage1 = 'assets/images/news_image1.jpg';
 const String newsImage2 = 'assets/images/news_image2.jpg';
