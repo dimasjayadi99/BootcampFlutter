@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/color.dart';
 import 'package:tugas_flutter/core/constant/string.dart';
-import 'package:tugas_flutter/domain/entities/news_entity.dart';
 import 'package:tugas_flutter/shared/gap.dart';
+import '../../domain/entities/news_entity.dart';
 
 class DetailNewsPage extends StatelessWidget {
   final NewsEntity newsEntity;

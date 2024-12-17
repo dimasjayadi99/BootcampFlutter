@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/style.dart';
-import 'package:tugas_flutter/presentation/pages/get_started_page.dart';
-import 'package:tugas_flutter/presentation/pages/home_page.dart';
-import 'package:tugas_flutter/presentation/pages/profile_page.dart';
-import 'package:tugas_flutter/presentation/pages/search_page.dart';
-
+import 'package:tugas_flutter/features/user/presentation/pages/user_page.dart';
 import 'core/constant/string.dart';
+import 'features/news/presentation/pages/get_started_page.dart';
+import 'features/news/presentation/pages/home_page.dart';
+import 'features/news/presentation/pages/profile_page.dart';
+import 'features/news/presentation/pages/search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +19,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(textTheme: StyleConst.myTextTheme),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/user',
       routes: {
-        '/': (context) => const GetStartedPage(),
+        '/started': (context) => const GetStartedPage(),
         '/home': (context) => const BottomBar(),
+        '/user': (context) => const UserPage(),
       },
     );
   }

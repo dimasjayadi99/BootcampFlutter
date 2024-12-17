@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_flutter/domain/entities/news_entity.dart';
-import '../../core/constant/color.dart';
-import '../../core/constant/string.dart';
-import '../../shared/gap.dart';
+import '../../../../core/constant/color.dart';
+import '../../../../core/constant/string.dart';
+import '../../../../shared/gap.dart';
+import '../../domain/entities/news_entity.dart';
 
 class CardBannerNews extends StatelessWidget {
   final NewsEntity newsEntity;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_flutter/domain/entities/news_entity.dart';
-import '../../shared/gap.dart';
+import '../../../../shared/gap.dart';
+import '../../domain/entities/news_entity.dart';
 
 class CardLatestNews extends StatelessWidget {
   final NewsEntity newsEntity;

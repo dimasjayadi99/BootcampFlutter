@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/color.dart';
 import 'package:tugas_flutter/core/constant/string.dart';
-import 'package:tugas_flutter/presentation/widgets/custom_button.dart';
+import 'package:tugas_flutter/features/news/presentation/widgets/custom_button.dart';
 import 'package:tugas_flutter/shared/gap.dart';
 
 class GetStartedPage extends StatelessWidget {
