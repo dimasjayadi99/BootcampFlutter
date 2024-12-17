@@ -1,5 +1,5 @@
-import 'package:tugas_flutter/features/user/presentation/data/models/user_model.dart';
-import 'package:tugas_flutter/features/user/presentation/domain/entities/user_entity.dart';
+import '../../domain/entities/user_entity.dart';
+import '../models/user_model.dart';
 
 class UserEntityMapper {
   UserEntity toUser(Datum user) {

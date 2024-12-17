@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_flutter/features/user/presentation/domain/entities/user_entity.dart';
 import 'package:tugas_flutter/features/user/presentation/pages/detail_user_page.dart';
 import 'package:tugas_flutter/features/user/presentation/widgets/card_user.dart';
-import '../data/data_source/remote/user_service.dart';
-import '../data/mapper/user_entity_mapper.dart';
-import '../data/repository/user_impl.dart';
-import '../domain/use_case/fetch_list_user.dart';
+import '../../data/data_source/remote/user_service.dart';
+import '../../data/mapper/user_entity_mapper.dart';
+import '../../data/repository/user_impl.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/use_case/fetch_list_user.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({super.key});

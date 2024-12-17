@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_flutter/features/user/presentation/data/repository/detail_user_impl.dart';
-import 'package:tugas_flutter/features/user/presentation/domain/use_case/fetch_detail_user.dart';
 import 'package:tugas_flutter/shared/gap.dart';
-import '../data/data_source/remote/user_service.dart';
-import '../data/mapper/user_entity_mapper.dart';
-import '../domain/entities/user_entity.dart';
+import '../../data/data_source/remote/user_service.dart';
+import '../../data/mapper/user_entity_mapper.dart';
+import '../../data/repository/detail_user_impl.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/use_case/fetch_detail_user.dart';
 
 class DetailUserPage extends StatelessWidget {
   final int id;

@@ -1,4 +1,4 @@
-import 'package:tugas_flutter/features/user/presentation/domain/entities/user_entity.dart';
+import '../entities/user_entity.dart';
 
 abstract class UserRepository {
   Future<List<UserEntity>> fetchListUser();

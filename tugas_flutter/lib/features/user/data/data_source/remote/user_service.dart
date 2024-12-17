@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:tugas_flutter/features/user/presentation/data/models/user_model.dart';
+
+import '../../models/user_model.dart';
 
 class UserService {
   Dio dio = Dio();

@@ -1,5 +1,4 @@
-import 'package:tugas_flutter/features/user/presentation/domain/entities/user_entity.dart';
-
+import '../entities/user_entity.dart';
 import '../repository/user_repository.dart';
 
 class FetchDetailUser {
