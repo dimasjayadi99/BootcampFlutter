@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/style.dart';
+import 'package:tugas_flutter/features/auth/pages/login_page.dart';
+import 'package:tugas_flutter/features/auth/pages/register_page.dart';
 import 'package:tugas_flutter/features/user/presentation/pages/user_page.dart';
 import 'core/constant/string.dart';
 import 'features/news/presentation/pages/get_started_page.dart';
@@ -19,11 +21,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(textTheme: StyleConst.myTextTheme),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/user',
+      initialRoute: '/login',
       routes: {
         '/started': (context) => const GetStartedPage(),
         '/home': (context) => const BottomBar(),
         '/user': (context) => const UserPage(),
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
       },
     );
   }

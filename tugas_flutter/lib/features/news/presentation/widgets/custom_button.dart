@@ -6,12 +6,17 @@ class CustomButton extends StatelessWidget {
   final int? backgroundColor;
   final int? labelColor;
   final VoidCallback onTap;
+  final int? borderColor;
+  final String? icon;
   const CustomButton(
       {super.key,
       required this.label,
       this.backgroundColor,
       this.labelColor,
-      required this.onTap});
+      required this.onTap,
+        this.borderColor,
+        this.icon,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +26,27 @@ class CustomButton extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: Color(backgroundColor ?? whiteColor),
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(primaryColor)),
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: Color(borderColor ?? primaryColor)),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
         ),
         onPressed: onTap,
-        child: Text(
-          label,
-          style: TextStyle(color: Color(labelColor ?? whiteColor)),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon != null ? Row(
+              children: [
+                Image.asset(icon!, width: 20, height: 20,),
+                const SizedBox(width: 8),
+              ],
+            ) : Container(),
+            Text(
+              label,
+              style: TextStyle(color: Color(labelColor ?? whiteColor)),
+            ),
+          ],
         ),
       ),
     );

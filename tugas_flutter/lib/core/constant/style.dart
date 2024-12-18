@@ -46,7 +46,7 @@ class StyleConst {
         color: const Color(blackColor)),
     bodyLarge: GoogleFonts.poppins(
         fontSize: 18,
-        fontWeight: FontWeight.w900,
+        fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
         color: const Color(blackColor)),
     bodyMedium: GoogleFonts.poppins(
