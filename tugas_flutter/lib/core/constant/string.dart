@@ -7,7 +7,8 @@ const String searchIconPath = 'assets/icons/ic_search.png';
 const String defaultAvatarPath = 'assets/images/default_avatar.jpg';
 const String googleIconPath = 'assets/images/google_icon.png';
 const String loginIllustrationPath = 'assets/images/login_illustration.png';
-const String registerIllustrationPath = 'assets/images/register_illustration.png';
+const String registerIllustrationPath =
+    'assets/images/register_illustration.png';
 const String newsImage1 = 'assets/images/news_image1.jpg';
 const String newsImage2 = 'assets/images/news_image2.jpg';
 const String newsImage3 = 'assets/images/news_image3.jpg';

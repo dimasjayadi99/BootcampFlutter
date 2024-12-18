@@ -10,7 +10,6 @@ import 'features/news/presentation/pages/home_page.dart';
 import 'features/news/presentation/pages/profile_page.dart';
 import 'features/news/presentation/pages/search_page.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

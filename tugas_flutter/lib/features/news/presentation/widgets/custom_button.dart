@@ -8,15 +8,15 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
   final int? borderColor;
   final String? icon;
-  const CustomButton(
-      {super.key,
-      required this.label,
-      this.backgroundColor,
-      this.labelColor,
-      required this.onTap,
-        this.borderColor,
-        this.icon,
-      });
+  const CustomButton({
+    super.key,
+    required this.label,
+    this.backgroundColor,
+    this.labelColor,
+    required this.onTap,
+    this.borderColor,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +36,18 @@ class CustomButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            icon != null ? Row(
-              children: [
-                Image.asset(icon!, width: 20, height: 20,),
-                const SizedBox(width: 8),
-              ],
-            ) : Container(),
+            icon != null
+                ? Row(
+                    children: [
+                      Image.asset(
+                        icon!,
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+                  )
+                : Container(),
             Text(
               label,
               style: TextStyle(color: Color(labelColor ?? whiteColor)),

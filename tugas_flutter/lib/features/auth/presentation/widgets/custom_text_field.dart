@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget{
+class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final IconData? prefixIcon;
@@ -26,7 +26,8 @@ class CustomTextField extends StatelessWidget{
       controller: controller,
       obscureText: isObscure ?? false,
       decoration: InputDecoration(
-        labelStyle: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+        labelStyle:
+            const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
         labelText: label,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -36,9 +37,7 @@ class CustomTextField extends StatelessWidget{
           ),
         ),
         prefixIcon: Icon(prefixIcon),
-        suffixIcon: GestureDetector(
-            onTap: suffixTap,
-            child: Icon(suffixIcon)),
+        suffixIcon: GestureDetector(onTap: suffixTap, child: Icon(suffixIcon)),
       ),
       validator: validator,
     );

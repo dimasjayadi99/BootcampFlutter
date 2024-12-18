@@ -35,28 +35,28 @@ class _LoginPageState extends State<LoginPage> {
         loading = false;
       });
 
-      if(mounted) {
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login berhasil!'),
-          backgroundColor: Colors.green,
-        ),
-      );
+          const SnackBar(
+            content: Text('Login berhasil!'),
+            backgroundColor: Colors.green,
+          ),
+        );
       }
 
-      if(mounted) Navigator.of(context).pushReplacementNamed('/home');
+      if (mounted) Navigator.of(context).pushReplacementNamed('/home');
     } on FirebaseAuthException catch (e) {
       setState(() {
         loading = false;
       });
 
-      if(mounted) {
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Login gagal: ${e.message}'),
-          backgroundColor: Colors.red,
-        ),
-      );
+          SnackBar(
+            content: Text('Login gagal: ${e.message}'),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     }
   }
@@ -86,8 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                     label: 'Email Address',
                     prefixIcon: Icons.email,
                     controller: _emailController,
-                    validator: (value){
-                      if(value == ''){
+                    validator: (value) {
+                      if (value == '') {
                         return 'Email masih kosong!';
                       }
                       return null;
@@ -98,15 +98,16 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     label: 'Password',
                     prefixIcon: Icons.lock,
-                    suffixIcon: isObscure ? Icons.visibility_off : Icons.visibility,
+                    suffixIcon:
+                        isObscure ? Icons.visibility_off : Icons.visibility,
                     isObscure: isObscure,
                     suffixTap: () {
                       setState(() {
                         isObscure = !isObscure;
                       });
                     },
-                    validator: (value){
-                      if(value == ''){
+                    validator: (value) {
+                      if (value == '') {
                         return 'Password masih kosong!';
                       }
                       return null;
@@ -122,19 +123,19 @@ class _LoginPageState extends State<LoginPage> {
                   const Gap.v(h: 32),
                   loading
                       ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                          child: CircularProgressIndicator(),
+                        )
                       : CustomButton(
-                    label: 'Masuk',
-                    onTap: () async {
-                      if (formKey.currentState!.validate()) {
-                        final email = _emailController.text.trim();
-                        final password = _passwordController.text.trim();
-                        await loginUser(email, password);
-                      }
-                    },
-                    backgroundColor: primaryColor,
-                  ),
+                          label: 'Masuk',
+                          onTap: () async {
+                            if (formKey.currentState!.validate()) {
+                              final email = _emailController.text.trim();
+                              final password = _passwordController.text.trim();
+                              await loginUser(email, password);
+                            }
+                          },
+                          backgroundColor: primaryColor,
+                        ),
                   const Gap.v(h: 16),
                   const Row(
                     children: [
