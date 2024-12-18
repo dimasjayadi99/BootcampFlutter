@@ -38,14 +38,16 @@ class GetStartedPage extends StatelessWidget {
                 label: 'Masuk',
                 backgroundColor: primaryColor,
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  Navigator.of(context).pushNamed('/login');
                 },
               ),
               const Gap.v(h: 15),
               CustomButton(
                 label: 'Mendaftar',
                 labelColor: primaryColor,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed('/register');
+                },
               ),
             ],
           ),

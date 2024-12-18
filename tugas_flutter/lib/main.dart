@@ -1,7 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter/core/constant/style.dart';
-import 'package:tugas_flutter/features/auth/pages/login_page.dart';
-import 'package:tugas_flutter/features/auth/pages/register_page.dart';
+import 'package:tugas_flutter/features/auth/presentation/pages/login_page.dart';
+import 'package:tugas_flutter/features/auth/presentation/pages/register_page.dart';
 import 'package:tugas_flutter/features/user/presentation/pages/user_page.dart';
 import 'core/constant/string.dart';
 import 'features/news/presentation/pages/get_started_page.dart';
@@ -9,7 +10,10 @@ import 'features/news/presentation/pages/home_page.dart';
 import 'features/news/presentation/pages/profile_page.dart';
 import 'features/news/presentation/pages/search_page.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
