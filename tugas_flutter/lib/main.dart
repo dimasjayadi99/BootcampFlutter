@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tugas_flutter/core/constant/style.dart';
 import 'package:tugas_flutter/features/auth/presentation/pages/login_page.dart';
 import 'package:tugas_flutter/features/auth/presentation/pages/register_page.dart';
@@ -9,6 +10,7 @@ import 'features/news/presentation/pages/get_started_page.dart';
 import 'features/news/presentation/pages/home_page.dart';
 import 'features/news/presentation/pages/profile_page.dart';
 import 'features/news/presentation/pages/search_page.dart';
+import 'features/user/presentation/bindings/user_binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,17 +23,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(textTheme: StyleConst.myTextTheme),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
-      routes: {
-        '/started': (context) => const GetStartedPage(),
-        '/home': (context) => const BottomBar(),
-        '/user': (context) => const UserPage(),
-        '/login': (context) => const LoginPage(),
-        '/register': (context) => const RegisterPage(),
-      },
+      initialRoute: '/user',
+      getPages: [
+        GetPage(
+          name: '/user',
+          page: () => UserPage(),
+          binding: UserBinding(),
+        ),
+        GetPage(
+          name: '/started',
+          page: () => const GetStartedPage(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => const BottomBar(),
+        ),
+        GetPage(
+          name: '/login',
+          page: () => const LoginPage(),
+        ),
+        GetPage(
+          name: '/register',
+          page: () => const RegisterPage(),
+        ),
+      ],
     );
   }
 }
