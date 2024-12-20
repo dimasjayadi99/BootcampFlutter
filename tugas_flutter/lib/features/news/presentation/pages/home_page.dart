@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tugas_flutter/core/constant/string.dart';
 import 'package:tugas_flutter/features/news/presentation/pages/detail_news_page.dart';
 import 'package:tugas_flutter/features/news/presentation/widgets/card_banner_news.dart';
@@ -62,10 +63,7 @@ class HomePage extends StatelessWidget {
   ];
 
   void goToDetail(BuildContext context, int index) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => DetailNewsPage(newsEntity: listNews[index])));
+    Get.to(DetailNewsPage(newsEntity: listNews[index]));
   }
 
   @override

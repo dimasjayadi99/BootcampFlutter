@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tugas_flutter/core/constant/color.dart';
 import 'package:tugas_flutter/core/constant/string.dart';
 import 'package:tugas_flutter/features/news/presentation/widgets/custom_button.dart';
@@ -38,7 +39,7 @@ class GetStartedPage extends StatelessWidget {
                 label: 'Masuk',
                 backgroundColor: primaryColor,
                 onTap: () {
-                  Navigator.of(context).pushNamed('/login');
+                  Get.toNamed('/login');
                 },
               ),
               const Gap.v(h: 15),
@@ -46,7 +47,7 @@ class GetStartedPage extends StatelessWidget {
                 label: 'Mendaftar',
                 labelColor: primaryColor,
                 onTap: () {
-                  Navigator.of(context).pushNamed('/register');
+                  Get.toNamed('/register');
                 },
               ),
             ],

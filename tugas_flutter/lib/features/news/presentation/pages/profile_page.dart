@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tugas_flutter/shared/gap.dart';
 import '../widgets/menu_profile.dart';
 
@@ -50,7 +51,7 @@ class ProfilePage extends StatelessWidget {
       label: 'Click for logout from your account',
       icon: Icons.logout_outlined,
       onTap: (BuildContext context) {
-        Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+        Get.offAllNamed('/started');
       },
     ),
   ];

@@ -1,67 +1,23 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tugas_flutter/core/constant/color.dart';
 import 'package:tugas_flutter/core/constant/string.dart';
+import 'package:tugas_flutter/core/enum/response_state.dart';
 import 'package:tugas_flutter/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:tugas_flutter/features/news/presentation/widgets/custom_button.dart';
 import 'package:tugas_flutter/shared/gap.dart';
+import '../../controllers/register_controller.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class RegisterPage extends StatelessWidget {
+  RegisterPage({super.key});
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  bool isObscure1 = true;
-  bool isObscure2 = true;
-  bool loading = false;
-
-  Future<void> createUser(String email, String password) async {
-    setState(() {
-      loading = true;
-    });
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      setState(() {
-        loading = false;
-      });
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Registrasi berhasil!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
-
-      if (mounted) Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        loading = false;
-      });
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Registrasi gagal: ${e.message}'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
-  }
+  final controller = Get.find<RegisterController>();
 
   @override
   Widget build(BuildContext context) {
@@ -95,62 +51,73 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   const Gap.v(h: 16),
-                  CustomTextField(
-                    label: 'Password',
-                    prefixIcon: Icons.lock,
-                    suffixIcon: Icons.visibility_off,
-                    controller: _passwordController,
-                    isObscure: isObscure1,
-                    suffixTap: () {
-                      setState(() {
-                        isObscure1 = !isObscure1;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == '') {
-                        return 'Password masih kosong!';
-                      }
-                      return null;
-                    },
-                  ),
+                  Obx(() => CustomTextField(
+                        label: 'Password',
+                        prefixIcon: Icons.lock,
+                        suffixIcon: Icons.visibility_off,
+                        controller: _passwordController,
+                        isObscure: controller.isObscure1.value,
+                        suffixTap: () =>
+                            controller.suffixIconTap(controller.isObscure1),
+                        validator: (value) {
+                          if (value == '') {
+                            return 'Password masih kosong!';
+                          }
+                          return null;
+                        },
+                      )),
                   const Gap.v(h: 16),
-                  CustomTextField(
-                    label: 'Konfirmasi Password',
-                    prefixIcon: Icons.lock,
-                    suffixIcon: Icons.visibility_off,
-                    controller: _confirmPasswordController,
-                    isObscure: isObscure2,
-                    suffixTap: () {
-                      setState(() {
-                        isObscure2 = !isObscure2;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == '') {
-                        return 'Konfirmasi password masih kosong!';
-                      } else if (value != _passwordController.text.trim()) {
-                        return 'Password tidak sama';
-                      }
-                      return null;
-                    },
-                  ),
+                  Obx(() => CustomTextField(
+                        label: 'Konfirmasi Password',
+                        prefixIcon: Icons.lock,
+                        suffixIcon: Icons.visibility_off,
+                        controller: _confirmPasswordController,
+                        isObscure: controller.isObscure2.value,
+                        suffixTap: () =>
+                            controller.suffixIconTap(controller.isObscure2),
+                        validator: (value) {
+                          if (value == '') {
+                            return 'Konfirmasi password masih kosong!';
+                          } else if (value != _passwordController.text.trim()) {
+                            return 'Password tidak sama';
+                          }
+                          return null;
+                        },
+                      )),
                   const Gap.v(h: 32),
-                  loading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : CustomButton(
-                          label: 'Mendaftar',
-                          backgroundColor: primaryColor,
-                          onTap: () async {
-                            if (formKey.currentState!.validate()) {
-                              final email = _emailController.text.trim();
-                              final password = _passwordController.text.trim();
+                  Obx(() =>
+                      controller.responseState.value == ResponseState.loading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : CustomButton(
+                              label: 'Mendaftar',
+                              backgroundColor: primaryColor,
+                              onTap: () async {
+                                if (formKey.currentState!.validate()) {
+                                  final email = _emailController.text.trim();
+                                  final password =
+                                      _passwordController.text.trim();
 
-                              await createUser(email, password);
-                            }
-                          },
-                        ),
+                                  await controller.createUser(email, password);
+
+                                  if (controller.responseState.value ==
+                                      ResponseState.success) {
+                                    Get.back();
+
+                                    Get.snackbar(
+                                        'Berhasil Registrasi', 'Silahkan login',
+                                        backgroundColor: Colors.green,
+                                        colorText: Colors.white);
+                                  } else {
+                                    Get.snackbar('Gagal Registrasi',
+                                        'Periksa kembali isian anda',
+                                        backgroundColor: Colors.redAccent,
+                                        colorText: Colors.white);
+                                  }
+                                }
+                              },
+                            )),
                   const Gap.v(h: 16),
                   const Row(
                     children: [
@@ -191,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         const Text('Sudah punya akun? '),
                         GestureDetector(
                             onTap: () {
-                              Navigator.of(context).pop();
+                              Get.back();
                             },
                             child: const Text(
                               'Masuk',

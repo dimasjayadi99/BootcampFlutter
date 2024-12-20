@@ -1,65 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tugas_flutter/core/constant/color.dart';
 import 'package:tugas_flutter/core/constant/string.dart';
+import 'package:tugas_flutter/core/enum/response_state.dart';
+import 'package:tugas_flutter/features/auth/controllers/login_controller.dart';
 import 'package:tugas_flutter/features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:tugas_flutter/features/news/presentation/widgets/custom_button.dart';
 import 'package:tugas_flutter/shared/gap.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
   final formKey = GlobalKey<FormState>();
 
-  bool isObscure = true;
-  bool loading = false;
-
-  Future<void> loginUser(String email, String password) async {
-    setState(() {
-      loading = true;
-    });
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      setState(() {
-        loading = false;
-      });
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Login berhasil!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
-
-      if (mounted) Navigator.of(context).pushReplacementNamed('/home');
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        loading = false;
-      });
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Login gagal: ${e.message}'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
-  }
+  final controller = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -94,25 +50,22 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   const Gap.v(h: 16),
-                  CustomTextField(
-                    controller: _passwordController,
-                    label: 'Password',
-                    prefixIcon: Icons.lock,
-                    suffixIcon:
-                        isObscure ? Icons.visibility_off : Icons.visibility,
-                    isObscure: isObscure,
-                    suffixTap: () {
-                      setState(() {
-                        isObscure = !isObscure;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == '') {
-                        return 'Password masih kosong!';
-                      }
-                      return null;
-                    },
-                  ),
+                  Obx(() => CustomTextField(
+                        controller: _passwordController,
+                        label: 'Password',
+                        prefixIcon: Icons.lock,
+                        suffixIcon: controller.isObscure.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        isObscure: controller.isObscure.value,
+                        suffixTap: controller.suffixIconTap,
+                        validator: (value) {
+                          if (value == '') {
+                            return 'Password masih kosong!';
+                          }
+                          return null;
+                        },
+                      )),
                   const Gap.v(h: 16),
                   const Row(
                     children: [
@@ -121,7 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   const Gap.v(h: 32),
-                  loading
+                  Obx(() => controller.responseState.value ==
+                          ResponseState.loading
                       ? const Center(
                           child: CircularProgressIndicator(),
                         )
@@ -131,11 +85,24 @@ class _LoginPageState extends State<LoginPage> {
                             if (formKey.currentState!.validate()) {
                               final email = _emailController.text.trim();
                               final password = _passwordController.text.trim();
-                              await loginUser(email, password);
+                              await controller.loginUser(email, password);
+
+                              if (controller.responseState.value ==
+                                  ResponseState.success) {
+                                Get.snackbar('Berhasil login', 'Selamat datang',
+                                    backgroundColor: Colors.green,
+                                    colorText: Colors.white);
+                                Get.toNamed('/home');
+                              } else {
+                                Get.snackbar('Gagal login',
+                                    'Periksa kembali email dan password anda',
+                                    backgroundColor: Colors.redAccent,
+                                    colorText: Colors.white);
+                              }
                             }
                           },
                           backgroundColor: primaryColor,
-                        ),
+                        )),
                   const Gap.v(h: 16),
                   const Row(
                     children: [
